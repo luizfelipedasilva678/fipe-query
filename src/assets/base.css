@@ -3,6 +3,5 @@
 :root {
   --font-family: 'Oswald', sans-serif;
 
-  font-size: 62.5%;
   font-family: var(--font-family);
 }

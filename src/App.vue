@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import ComponentHeader from '@/components/ComponentHeader.vue'
+</script>
 
 <template>
   <main>
-    <p class="text-black">Hello</p>
+    <ComponentHeader />
   </main>
 </template>
