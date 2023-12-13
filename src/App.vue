@@ -1,9 +1,8 @@
 <script setup lang="ts">
-  import ComponentsHeader from '@/components/ComponentsHeader.vue'
+  import TheHeader from '@/components/TheHeader.vue'
 </script>
 
 <template>
-  <main>
-    <ComponentsHeader />
-  </main>
+  <TheHeader />
+  <main></main>
 </template>
