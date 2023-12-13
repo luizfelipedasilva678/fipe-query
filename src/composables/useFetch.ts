@@ -11,9 +11,8 @@ const useFetch = <T>(url: string) => {
     controller = new AbortController()
   }
 
-  abort()
-
   watchEffect(() => {
+    abort()
     data.value = null
     error.value = undefined
     isLoading.value = true
