@@ -1,9 +1,9 @@
 <script setup lang="ts">
-  import ComponentHeader from '@/components/ComponentHeader.vue'
+  import ComponentsHeader from '@/components/ComponentsHeader.vue'
 </script>
 
 <template>
   <main>
-    <ComponentHeader />
+    <ComponentsHeader />
   </main>
 </template>
