@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://parallelum.com.br/fipe/api/v1/'
+export const BASE_URL = 'https://parallelum.com.br/fipe/api/v1'
