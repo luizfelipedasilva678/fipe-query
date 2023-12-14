@@ -1,23 +1,32 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
-  import { VEHICLES } from '@/constants/index'
+  import { ref, computed } from 'vue'
+  import { BASE_URL, VEHICLES } from '@/constants/index'
   import BaseDropdown from '@/components/base/BaseDropdown.vue'
+  import useFetch from '@/composables/useFetch'
 
-  const brand = ref('')
+  const url = computed(() => {
+    if (!vehicle.value) return ''
 
-  function setBrand(option: Option) {
-    brand.value = option.name
+    return `${BASE_URL}/${vehicle.value}/marcas`
+  })
+  const vehicle = ref('')
+  const { data } = useFetch(url)
+
+  function setBrand(option: string) {
+    vehicle.value = option
   }
 </script>
 
 <template>
   <main class="flex items-center justify-center flex-col">
+    {{ data }}
     <BaseDropdown
       :options="VEHICLES"
       :id="'vehicle'"
       :label="'Selecione o tipo de veículo'"
       :name="'vehicle'"
-      @set-selected-option="setBrand"
+      :placeholder="'Selecione um tipo de veículo'"
+      @option-change="setBrand"
     />
   </main>
 </template>

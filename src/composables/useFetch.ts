@@ -1,6 +1,6 @@
-import { ref, watchEffect, type Ref } from 'vue'
+import { ref, type Ref, watch, toValue } from 'vue'
 
-const useFetch = <T>(url: string) => {
+const useFetch = <T>(urlRef: Ref<string>) => {
   let controller: AbortController | undefined = undefined
   const isLoading = ref(false)
   const data = ref<T | null>(null) as Ref<T | null>
@@ -11,11 +11,17 @@ const useFetch = <T>(url: string) => {
     controller = new AbortController()
   }
 
-  watchEffect(() => {
+  watch(urlRef, () => {
     abort()
     data.value = null
     error.value = undefined
     isLoading.value = true
+    const url = toValue(urlRef)
+
+    if (!url) {
+      isLoading.value = false
+      return
+    }
 
     fetch(url, {
       signal: controller?.signal
