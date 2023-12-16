@@ -35,7 +35,7 @@
         v-for="option in options"
         :key="option.id"
       >
-        <option>{{ option.name }}</option>
+        <option :value="option.id">{{ option.name }}</option>
       </template>
     </select>
   </div>
