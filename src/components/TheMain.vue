@@ -3,7 +3,11 @@
   import { getRequestUrlFor, normalizeToOptions } from '@/utils'
   import { VEHICLES } from '@/constants'
   import BaseDropdown from '@/components/base/BaseDropdown.vue'
+  import BaseDropdownSkeleton from '@/components/base/BaseDropdownSkeleton.vue'
+  import BaseConditionalRender from './base/BaseConditionalRender.vue'
+  import BaseTableSkeleton from './base/BaseTableSkeleton.vue'
   import useFetch from '@/composables/useFetch'
+  import BaseTable from './base/BaseTable.vue'
 
   const requestInfos = ref({
     vehicle: '',
@@ -17,10 +21,10 @@
   const yearsRequestUrl = computed(() => getRequestUrlFor('years', requestInfos))
   const fipeRequestUrl = computed(() => getRequestUrlFor('fipe', requestInfos))
 
-  const { data: brands } = useFetch<Brand[]>(brandsRequestUrl)
-  const { data: models } = useFetch<Model[]>(modelsRequestUrl)
-  const { data: years } = useFetch<Year[]>(yearsRequestUrl)
-  const { data: fipe } = useFetch<FipeResponse>(fipeRequestUrl)
+  const { data: brands, isLoading: isBrandsLoading } = useFetch<Brand[]>(brandsRequestUrl)
+  const { data: models, isLoading: isModelsLoading } = useFetch<Model[]>(modelsRequestUrl)
+  const { data: years, isLoading: isYearsLoading } = useFetch<Year[]>(yearsRequestUrl)
+  const { data: fipe, isLoading: isFipeResponseLoading } = useFetch<FipeResponse>(fipeRequestUrl)
 
   function setVehicle(selectedVehicle: string) {
     if (requestInfos.value.vehicle !== '') {
@@ -65,7 +69,13 @@
       @option-change="setVehicle"
     />
 
-    <template v-if="requestInfos.vehicle !== ''">
+    <BaseConditionalRender
+      :is-loading="isBrandsLoading"
+      :show-block="requestInfos.vehicle !== ''"
+    >
+      <template #skeleton>
+        <BaseDropdownSkeleton />
+      </template>
       <BaseDropdown
         :options="normalizeToOptions(brands)"
         :id="'brand'"
@@ -74,9 +84,15 @@
         :placeholder="'Selecione uma marca'"
         @option-change="setBrand"
       />
-    </template>
+    </BaseConditionalRender>
 
-    <template v-if="requestInfos.brand !== ''">
+    <BaseConditionalRender
+      :is-loading="isModelsLoading"
+      :show-block="requestInfos.brand !== ''"
+    >
+      <template #skeleton>
+        <BaseDropdownSkeleton />
+      </template>
       <BaseDropdown
         :options="normalizeToOptions(models)"
         :id="'model'"
@@ -85,9 +101,15 @@
         :placeholder="'Selecione um modelo'"
         @option-change="setModel"
       />
-    </template>
+    </BaseConditionalRender>
 
-    <template v-if="requestInfos.model !== ''">
+    <BaseConditionalRender
+      :is-loading="isYearsLoading"
+      :show-block="requestInfos.model !== ''"
+    >
+      <template #skeleton>
+        <BaseDropdownSkeleton />
+      </template>
       <BaseDropdown
         :options="normalizeToOptions(years)"
         :id="'year'"
@@ -96,6 +118,13 @@
         :placeholder="'Selecione o ano'"
         @option-change="setYear"
       />
-    </template>
+    </BaseConditionalRender>
+
+    <BaseConditionalRender :is-loading="isFipeResponseLoading">
+      <template #skeleton>
+        <BaseTableSkeleton />
+      </template>
+      <BaseTable :data="fipe" />
+    </BaseConditionalRender>
   </main>
 </template>
