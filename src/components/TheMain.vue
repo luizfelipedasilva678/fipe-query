@@ -55,7 +55,7 @@
 </script>
 
 <template>
-  <main class="flex items-center justify-center flex-col">
+  <main class="flex items-center justify-center flex-col max-w-7xl ml-auto mr-auto mt-4 p-2">
     <BaseDropdown
       :options="VEHICLES"
       :id="'vehicle'"

@@ -17,12 +17,18 @@
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <label :for="id"> {{ label }} </label>
+  <div class="flex flex-col w-full mb-4 max-w-2xl">
+    <label
+      :for="id"
+      class="mb-2"
+    >
+      {{ label }}
+    </label>
     <select
       :name="name"
       :id="id"
       @change="handleChange"
+      class="block cursor-pointer w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
       <option
         value=""
