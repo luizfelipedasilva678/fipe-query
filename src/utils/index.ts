@@ -2,26 +2,30 @@ import { BASE_URL } from '@/constants'
 import type { Ref } from 'vue'
 
 export function getRequestUrlFor(
-  queryFor: 'brands' | 'model' | 'years' | 'fipe',
-  queryInfos: Ref<{
+  requestFor: 'brands' | 'model' | 'years' | 'fipe',
+  requestInfos: Ref<{
     vehicle: string
     brand: string
     model: string
     year: string
   }>
 ) {
-  const hasVehicle = queryInfos.value.vehicle
-  const hasBrandAndVehicle = hasVehicle && queryInfos.value.brand
-  const hasModelBrandAndVehicle = hasBrandAndVehicle && queryInfos.value.model
-  const hasYearModelBrandAndVehicle = hasModelBrandAndVehicle && queryInfos.value.year
+  const hasVehicle = requestInfos.value.vehicle
+  const hasBrandAndVehicle = hasVehicle && requestInfos.value.brand
+  const hasModelBrandAndVehicle = hasBrandAndVehicle && requestInfos.value.model
+  const hasYearModelBrandAndVehicle = hasModelBrandAndVehicle && requestInfos.value.year
 
-  if (hasVehicle && queryFor === 'brands') return `${BASE_URL}/${queryInfos.value.vehicle}/brands`
-  if (hasBrandAndVehicle && queryFor === 'model')
-    return `${BASE_URL}/${queryInfos.value.vehicle}/brands/${queryInfos.value.brand}/models`
-  if (hasModelBrandAndVehicle && queryFor === 'years')
-    return `${BASE_URL}/${queryInfos.value.vehicle}/brands/${queryInfos.value.brand}/models/${queryInfos.value.model}/years`
-  if (hasYearModelBrandAndVehicle && queryFor === 'fipe')
-    return `${BASE_URL}/${queryInfos.value.vehicle}/brands/${queryInfos.value.brand}/models/${queryInfos.value.model}/years/${queryInfos.value.year}`
+  if (hasVehicle && requestFor === 'brands')
+    return `${BASE_URL}/${requestInfos.value.vehicle}/brands`
+
+  if (hasBrandAndVehicle && requestFor === 'model')
+    return `${BASE_URL}/${requestInfos.value.vehicle}/brands/${requestInfos.value.brand}/models`
+
+  if (hasModelBrandAndVehicle && requestFor === 'years')
+    return `${BASE_URL}/${requestInfos.value.vehicle}/brands/${requestInfos.value.brand}/models/${requestInfos.value.model}/years`
+
+  if (hasYearModelBrandAndVehicle && requestFor === 'fipe')
+    return `${BASE_URL}/${requestInfos.value.vehicle}/brands/${requestInfos.value.brand}/models/${requestInfos.value.model}/years/${requestInfos.value.year}`
 
   return ''
 }

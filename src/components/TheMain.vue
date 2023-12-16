@@ -5,17 +5,17 @@
   import BaseDropdown from '@/components/base/BaseDropdown.vue'
   import useFetch from '@/composables/useFetch'
 
-  const queryInfos = ref({
+  const requestInfos = ref({
     vehicle: '',
     brand: '',
     model: '',
     year: ''
   })
 
-  const brandsRequestUrl = computed(() => getRequestUrlFor('brands', queryInfos))
-  const modelsRequestUrl = computed(() => getRequestUrlFor('model', queryInfos))
-  const yearsRequestUrl = computed(() => getRequestUrlFor('years', queryInfos))
-  const fipeRequestUrl = computed(() => getRequestUrlFor('fipe', queryInfos))
+  const brandsRequestUrl = computed(() => getRequestUrlFor('brands', requestInfos))
+  const modelsRequestUrl = computed(() => getRequestUrlFor('model', requestInfos))
+  const yearsRequestUrl = computed(() => getRequestUrlFor('years', requestInfos))
+  const fipeRequestUrl = computed(() => getRequestUrlFor('fipe', requestInfos))
 
   const { data: brands } = useFetch<Brand[]>(brandsRequestUrl)
   const { data: models } = useFetch<Model[]>(modelsRequestUrl)
@@ -23,26 +23,39 @@
   const { data: fipe } = useFetch<FipeResponse>(fipeRequestUrl)
 
   function setVehicle(selectedVehicle: string) {
-    queryInfos.value.vehicle = selectedVehicle
+    if (requestInfos.value.vehicle !== '') {
+      requestInfos.value.brand = ''
+      requestInfos.value.model = ''
+      requestInfos.value.year = ''
+    }
+
+    requestInfos.value.vehicle = selectedVehicle
   }
 
   function setBrand(selectedBrand: string) {
-    queryInfos.value.brand = selectedBrand
+    if (requestInfos.value.brand !== '') {
+      requestInfos.value.model = ''
+      requestInfos.value.year = ''
+    }
+
+    requestInfos.value.brand = selectedBrand
   }
 
   function setModel(selectedModel: string) {
-    queryInfos.value.model = selectedModel
+    if (requestInfos.value.model !== '') {
+      requestInfos.value.year = ''
+    }
+
+    requestInfos.value.model = selectedModel
   }
 
   function setYear(selectedYear: string) {
-    queryInfos.value.year = selectedYear
+    requestInfos.value.year = selectedYear
   }
 </script>
 
 <template>
   <main class="flex items-center justify-center flex-col">
-    {{ fipe }}
-
     <BaseDropdown
       :options="VEHICLES"
       :id="'vehicle'"
@@ -52,7 +65,7 @@
       @option-change="setVehicle"
     />
 
-    <template v-if="queryInfos.vehicle !== ''">
+    <template v-if="requestInfos.vehicle !== ''">
       <BaseDropdown
         :options="normalizeToOptions(brands)"
         :id="'brand'"
@@ -63,7 +76,7 @@
       />
     </template>
 
-    <template v-if="queryInfos.brand !== ''">
+    <template v-if="requestInfos.brand !== ''">
       <BaseDropdown
         :options="normalizeToOptions(models)"
         :id="'model'"
@@ -74,7 +87,7 @@
       />
     </template>
 
-    <template v-if="queryInfos.model !== ''">
+    <template v-if="requestInfos.model !== ''">
       <BaseDropdown
         :options="normalizeToOptions(years)"
         :id="'year'"
