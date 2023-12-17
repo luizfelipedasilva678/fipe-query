@@ -12,6 +12,6 @@ export default defineConfig({
     }
   },
   build: {
-    assetsDir: `${pack.name}/assets`
+    assetsDir: '.'
   }
 })
