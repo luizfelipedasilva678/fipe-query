@@ -1,13 +1,13 @@
 <script setup lang="ts">
-  import { ref, computed } from 'vue'
+  import { ref, computed, toValue } from 'vue'
   import { getRequestUrlFor, normalizeToOptions } from '@/utils'
   import { VEHICLES } from '@/constants'
   import BaseDropdown from '@/components/base/BaseDropdown.vue'
   import BaseDropdownSkeleton from '@/components/base/BaseDropdownSkeleton.vue'
-  import BaseConditionalRender from './base/BaseConditionalRender.vue'
-  import BaseTableSkeleton from './base/BaseTableSkeleton.vue'
+  import BaseConditionalRender from '@/components/base/BaseConditionalRender.vue'
+  import BaseTableSkeleton from '@/components/base/BaseTableSkeleton.vue'
   import useFetch from '@/composables/useFetch'
-  import BaseTable from './base/BaseTable.vue'
+  import BaseTable from '@/components/base/BaseTable.vue'
 
   const requestInfos = ref({
     vehicle: '',
@@ -16,10 +16,10 @@
     year: ''
   })
 
-  const brandsRequestUrl = computed(() => getRequestUrlFor('brands', requestInfos))
-  const modelsRequestUrl = computed(() => getRequestUrlFor('model', requestInfos))
-  const yearsRequestUrl = computed(() => getRequestUrlFor('years', requestInfos))
-  const fipeRequestUrl = computed(() => getRequestUrlFor('fipe', requestInfos))
+  const brandsRequestUrl = computed(() => getRequestUrlFor('brands', toValue(requestInfos)))
+  const modelsRequestUrl = computed(() => getRequestUrlFor('model', toValue(requestInfos)))
+  const yearsRequestUrl = computed(() => getRequestUrlFor('years', toValue(requestInfos)))
+  const fipeRequestUrl = computed(() => getRequestUrlFor('fipe', toValue(requestInfos)))
 
   const { data: brands, isLoading: isBrandsLoading } = useFetch<Brand[]>(brandsRequestUrl)
   const { data: models, isLoading: isModelsLoading } = useFetch<Model[]>(modelsRequestUrl)

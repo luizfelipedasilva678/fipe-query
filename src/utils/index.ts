@@ -1,31 +1,29 @@
 import { BASE_URL } from '@/constants'
-import type { Ref } from 'vue'
 
 export function getRequestUrlFor(
   requestFor: 'brands' | 'model' | 'years' | 'fipe',
-  requestInfos: Ref<{
+  requestInfos: {
     vehicle: string
     brand: string
     model: string
     year: string
-  }>
+  }
 ) {
-  const hasVehicle = requestInfos.value.vehicle
-  const hasBrandAndVehicle = hasVehicle && requestInfos.value.brand
-  const hasModelBrandAndVehicle = hasBrandAndVehicle && requestInfos.value.model
-  const hasYearModelBrandAndVehicle = hasModelBrandAndVehicle && requestInfos.value.year
+  const hasVehicle = requestInfos.vehicle
+  const hasBrandAndVehicle = hasVehicle && requestInfos.brand
+  const hasModelBrandAndVehicle = hasBrandAndVehicle && requestInfos.model
+  const hasYearModelBrandAndVehicle = hasModelBrandAndVehicle && requestInfos.year
 
-  if (hasVehicle && requestFor === 'brands')
-    return `${BASE_URL}/${requestInfos.value.vehicle}/brands`
+  if (hasVehicle && requestFor === 'brands') return `${BASE_URL}/${requestInfos.vehicle}/brands`
 
   if (hasBrandAndVehicle && requestFor === 'model')
-    return `${BASE_URL}/${requestInfos.value.vehicle}/brands/${requestInfos.value.brand}/models`
+    return `${BASE_URL}/${requestInfos.vehicle}/brands/${requestInfos.brand}/models`
 
   if (hasModelBrandAndVehicle && requestFor === 'years')
-    return `${BASE_URL}/${requestInfos.value.vehicle}/brands/${requestInfos.value.brand}/models/${requestInfos.value.model}/years`
+    return `${BASE_URL}/${requestInfos.vehicle}/brands/${requestInfos.brand}/models/${requestInfos.model}/years`
 
   if (hasYearModelBrandAndVehicle && requestFor === 'fipe')
-    return `${BASE_URL}/${requestInfos.value.vehicle}/brands/${requestInfos.value.brand}/models/${requestInfos.value.model}/years/${requestInfos.value.year}`
+    return `${BASE_URL}/${requestInfos.vehicle}/brands/${requestInfos.brand}/models/${requestInfos.model}/years/${requestInfos.year}`
 
   return ''
 }
