@@ -1,3 +1,3 @@
-# fipe-query
+# Fipe query
 
 Application to query vehicles prices from Fipe table
