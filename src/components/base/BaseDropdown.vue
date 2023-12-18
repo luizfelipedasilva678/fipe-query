@@ -17,7 +17,10 @@
 </script>
 
 <template>
-  <div class="flex flex-col w-full mb-4 max-w-2xl">
+  <div
+    class="flex flex-col w-full mb-4 max-w-2xl"
+    data-testid="base-dropdown"
+  >
     <label
       :for="id"
       class="mb-2"

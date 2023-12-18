@@ -10,6 +10,7 @@
   <table
     v-if="data"
     class="w-full max-w-2xl dark:bg-gray-700 rounded-b-lg p-2"
+    data-testid="fipe-response"
   >
     <caption class="text-center text-white dark:bg-gray-700 rounded-t-lg px-2.5 text-lg">
       Dados retornados da sua consulta
