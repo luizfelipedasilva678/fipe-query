@@ -1,0 +1,6 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://luizfelipedasilva678.github.io/fipe-query/
