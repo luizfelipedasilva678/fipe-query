@@ -1,4 +1,4 @@
-import BaseDropdown from '@/components/base/BaseDropdown.vue'
+import BaseDropdown from '@/components/base/Dropdown/BaseDropdown.vue'
 import { VueWrapper, mount } from '@vue/test-utils'
 import { it, describe, beforeAll, expect } from 'vitest'
 

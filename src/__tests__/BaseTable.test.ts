@@ -1,4 +1,4 @@
-import BaseTableVue from '@/components/base/BaseTable.vue'
+import BaseTableVue from '@/components/base/Table/BaseTable.vue'
 import { VueWrapper, mount } from '@vue/test-utils'
 import { describe, it, expect, beforeAll } from 'vitest'
 

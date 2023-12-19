@@ -1,4 +1,4 @@
-import BaseDropdownSkeleton from '@/components/base/BaseDropdownSkeleton.vue'
+import BaseDropdownSkeleton from '@/components/base/Dropdown/BaseDropdownSkeleton.vue'
 import { VueWrapper, mount } from '@vue/test-utils'
 import { describe, it, expect, beforeAll } from 'vitest'
 

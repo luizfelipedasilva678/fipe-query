@@ -1,15 +1,15 @@
-import BaseTableSkeleton from '@/components/base/Table/BaseTableSkeleton.vue'
+import BaseChartSkeletonVue from '@/components/base/Chart/BaseChartSkeleton.vue'
 import { VueWrapper, mount } from '@vue/test-utils'
 import { describe, it, expect, beforeAll } from 'vitest'
 
 describe('BaseDropdownSkeleton', () => {
-  let wrapper: VueWrapper<any>
+  let wrapper: VueWrapper
 
   beforeAll(() => {
-    wrapper = mount(BaseTableSkeleton)
+    wrapper = mount(BaseChartSkeletonVue)
   })
 
   it('should render correctly', () => {
-    expect(wrapper.get('[data-testid="table-skeleton"]')).toBeDefined()
+    expect(wrapper.get('[data-testid="chart-skeleton"]')).toBeDefined()
   })
 })

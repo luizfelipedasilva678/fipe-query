@@ -2,7 +2,7 @@
   import { ref, watch } from 'vue'
   import useGetChartData from '@/composables/useGetChartData'
   import Chart from 'chart.js/auto'
-  import BaseChartSkeleton from '@/components/base/BaseChartSkeleton.vue'
+  import BaseChartSkeleton from '@/components/base/Chart/BaseChartSkeleton.vue'
 
   const props = defineProps({
     finalUrl: { type: String, required: true, default: null }
@@ -46,6 +46,7 @@
   <div
     v-show="chartData && !error"
     class="w-full max-w-2xl mt-4 mb-4"
+    data-testid="chart"
   >
     <canvas
       ref="canvas"

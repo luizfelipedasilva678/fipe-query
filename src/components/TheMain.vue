@@ -2,13 +2,13 @@
   import { ref, computed, toValue } from 'vue'
   import { getRequestUrlFor, normalizeToOptions } from '@/utils'
   import { VEHICLES } from '@/constants'
-  import BaseDropdown from '@/components/base/BaseDropdown.vue'
-  import BaseChart from '@/components/base/BaseChart.vue'
-  import BaseDropdownSkeleton from '@/components/base/BaseDropdownSkeleton.vue'
+  import BaseDropdown from '@/components/base/Dropdown/BaseDropdown.vue'
+  import BaseChart from '@/components/base/Chart/BaseChart.vue'
+  import BaseDropdownSkeleton from '@/components/base/Dropdown/BaseDropdownSkeleton.vue'
   import BaseConditionalRender from '@/components/base/BaseConditionalRender.vue'
-  import BaseTableSkeleton from '@/components/base/BaseTableSkeleton.vue'
+  import BaseTableSkeleton from '@/components/base/Table/BaseTableSkeleton.vue'
   import useFetch from '@/composables/useFetch'
-  import BaseTable from '@/components/base/BaseTable.vue'
+  import BaseTable from '@/components/base/Table/BaseTable.vue'
 
   const requestInfos = ref({
     vehicle: '',
