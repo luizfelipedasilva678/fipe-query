@@ -3,6 +3,11 @@ interface QueryData {
   name: string
 }
 
+interface Reference {
+  code: string
+  month: string
+}
+
 interface Option {
   name: string
   id: number | string

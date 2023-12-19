@@ -3,6 +3,7 @@
   import { getRequestUrlFor, normalizeToOptions } from '@/utils'
   import { VEHICLES } from '@/constants'
   import BaseDropdown from '@/components/base/BaseDropdown.vue'
+  import BaseChart from '@/components/base/BaseChart.vue'
   import BaseDropdownSkeleton from '@/components/base/BaseDropdownSkeleton.vue'
   import BaseConditionalRender from '@/components/base/BaseConditionalRender.vue'
   import BaseTableSkeleton from '@/components/base/BaseTableSkeleton.vue'
@@ -126,5 +127,7 @@
       </template>
       <BaseTable :data="fipe" />
     </BaseConditionalRender>
+
+    <BaseChart :final-url="fipeRequestUrl" />
   </main>
 </template>

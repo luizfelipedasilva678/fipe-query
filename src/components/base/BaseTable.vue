@@ -2,7 +2,7 @@
   import { type PropType } from 'vue'
 
   defineProps({
-    data: { type: Object as PropType<FipeResponse | null>, required: true }
+    data: { type: Object as PropType<FipeResponse | null>, required: false }
   })
 </script>
 
